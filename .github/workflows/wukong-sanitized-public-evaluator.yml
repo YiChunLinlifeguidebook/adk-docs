@@ -41,6 +41,11 @@ jobs:
           grep -q '^PUBLIC_POST_RETURN_EXTERNAL_PROVENANCE_PROMOTED=0$' public-evaluator.log
           grep -q '^PUBLIC_POST_RETURN_FINAL_EMITTED=0$' public-evaluator.log
           grep -q '^SANITIZED_PUBLIC_POST_RETURN_GATE=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_BLOB_COUNT=5$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_RUNTIME_PASS=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_SOURCE_FAILURE_PROVEN=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_CORE_INCLUDED=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_BRIDGE=PASS$' public-evaluator.log
           grep -q '^PUBLIC_TOTAL_CASES=23$' public-evaluator.log
           grep -q '^PUBLIC_TOTAL_PASS=23$' public-evaluator.log
           grep -q '^PUBLIC_TOTAL_FAIL=0$' public-evaluator.log
