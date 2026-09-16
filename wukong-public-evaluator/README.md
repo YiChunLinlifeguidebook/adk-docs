@@ -7,7 +7,10 @@ The evaluator checks public safety invariants:
 - LLM results require proposal + evidence + digest + identity + lineage validation;
 - Native, External Tool and HOLD routes reject silent model fallback;
 - direct-final attempts are rejected;
-- invalid or incomplete receipts fail closed.
+- invalid or incomplete receipts fail closed;
+- an external provider return can enter post-return governance without being auto-promoted;
+- provider, QC, translation or bypass layers cannot self-finalize;
+- release remains closed when external provenance is not promoted.
 
 ## Run locally
 
@@ -15,13 +18,17 @@ The evaluator checks public safety invariants:
 sh scripts/verify_public_evaluator.sh
 ```
 
-Expected terminal marker:
+Expected terminal markers include:
 
 ```text
 SANITIZED_PUBLIC_EVALUATOR_GATE=PASS
+SANITIZED_PUBLIC_POST_RETURN_GATE=PASS
+PUBLIC_TOTAL_PASS=23
+SANITIZED_PUBLIC_EVALUATOR_VERIFY=PASS
 ```
 
 ## Claim boundary
 
 This is not the private Wukong runtime and does not contain its core source.
-A PASS here proves only that the published evaluator contract and synthetic vectors satisfy the stated public invariants.
+A PASS here proves only that the published evaluator contracts and synthetic vectors satisfy the stated public invariants.
+It does not prove private R9 runtime or Production readiness.
