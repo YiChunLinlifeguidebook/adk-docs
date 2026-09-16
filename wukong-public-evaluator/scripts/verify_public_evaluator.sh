@@ -54,8 +54,17 @@ grep -q '^PUBLIC_POST_RETURN_EXTERNAL_PROVENANCE_PROMOTED=0$' "$OUT/post.log"
 grep -q '^PUBLIC_POST_RETURN_FINAL_EMITTED=0$' "$OUT/post.log"
 grep -q '^SANITIZED_PUBLIC_POST_RETURN_GATE=PASS$' "$OUT/post.log"
 
+sh scripts/verify_private_receipt_bridge.sh | tee "$OUT/receipt.log"
+
+grep -q '^PUBLIC_PRIVATE_RECEIPT_BLOB_COUNT=5$' "$OUT/receipt.log"
+grep -q '^PUBLIC_PRIVATE_RECEIPT_RUNTIME_PASS=0$' "$OUT/receipt.log"
+grep -q '^PUBLIC_PRIVATE_RECEIPT_SOURCE_FAILURE_PROVEN=0$' "$OUT/receipt.log"
+grep -q '^PUBLIC_PRIVATE_RECEIPT_CORE_INCLUDED=0$' "$OUT/receipt.log"
+grep -q '^PUBLIC_PRIVATE_RECEIPT_BRIDGE=PASS$' "$OUT/receipt.log"
+
 cat "$OUT/route.log"
 cat "$OUT/post.log"
+cat "$OUT/receipt.log"
 
 sha256sum $(cat ALLOWLIST.txt) | sort > "$OUT/SHA256SUMS.txt"
 cat "$OUT/SHA256SUMS.txt"
@@ -64,4 +73,5 @@ echo "PUBLIC_SHA256_MANIFEST=PASS"
 echo "PUBLIC_TOTAL_CASES=23"
 echo "PUBLIC_TOTAL_PASS=23"
 echo "PUBLIC_TOTAL_FAIL=0"
+echo "PUBLIC_PRIVATE_RECEIPT_BRIDGE=PASS"
 echo "SANITIZED_PUBLIC_EVALUATOR_VERIFY=PASS"
