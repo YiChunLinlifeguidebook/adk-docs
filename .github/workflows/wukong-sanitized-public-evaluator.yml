@@ -36,7 +36,14 @@ jobs:
           grep -q '^PUBLIC_EVALUATOR_PASS=13$' public-evaluator.log
           grep -q '^PUBLIC_EVALUATOR_FAIL=0$' public-evaluator.log
           grep -q '^PUBLIC_EVALUATOR_PROVIDER_FINAL_AUTHORITY=0$' public-evaluator.log
-          grep -q '^SANITIZED_PUBLIC_EVALUATOR_GATE=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_PASS=10$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_FAIL=0$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_EXTERNAL_PROVENANCE_PROMOTED=0$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_FINAL_EMITTED=0$' public-evaluator.log
+          grep -q '^SANITIZED_PUBLIC_POST_RETURN_GATE=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_CASES=23$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_PASS=23$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_FAIL=0$' public-evaluator.log
           grep -q '^SANITIZED_PUBLIC_EVALUATOR_VERIFY=PASS$' public-evaluator.log
 
       - name: Upload public evidence
