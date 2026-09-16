@@ -1,0 +1,22 @@
+name: Wukong Free Runner Canary
+
+on:
+  push:
+    branches:
+      - isolated/actions-free-runner-canary-20260916
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Runner receipt
+        run: |
+          set -euo pipefail
+          echo "WUKONG_PUBLIC_FREE_RUNNER_CANARY=PASS"
+          uname -a
+          printf 'RUNNER_OS=%s\n' "$RUNNER_OS"
