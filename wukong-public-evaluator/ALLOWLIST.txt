@@ -1,0 +1,8 @@
+README.md
+PUBLIC_SCOPE.md
+include/wukong_public_evaluator_contract.h
+src/wukong_public_evaluator_contract.c
+tests/test_wukong_public_evaluator.c
+vectors/public_vectors.tsv
+ALLOWLIST.txt
+scripts/verify_public_evaluator.sh
