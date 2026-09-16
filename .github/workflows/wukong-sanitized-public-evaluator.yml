@@ -1,0 +1,59 @@
+name: Wukong Sanitized Public Evaluator
+
+on:
+  push:
+    branches:
+      - isolated/wukong-sanitized-public-evaluator-20260916-v1
+  pull_request:
+    paths:
+      - "wukong-public-evaluator/**"
+      - ".github/workflows/wukong-sanitized-public-evaluator.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run sanitized evaluator
+        run: |
+          set -euo pipefail
+          cd wukong-public-evaluator
+          sh scripts/verify_public_evaluator.sh | tee ../public-evaluator.log
+
+      - name: Verify terminal markers
+        run: |
+          set -euo pipefail
+          grep -q '^PUBLIC_ALLOWLIST=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_SECRET_SCAN=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_CORE_PATH_SCAN=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_EVALUATOR_PASS=13$' public-evaluator.log
+          grep -q '^PUBLIC_EVALUATOR_FAIL=0$' public-evaluator.log
+          grep -q '^PUBLIC_EVALUATOR_PROVIDER_FINAL_AUTHORITY=0$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_PASS=10$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_FAIL=0$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_EXTERNAL_PROVENANCE_PROMOTED=0$' public-evaluator.log
+          grep -q '^PUBLIC_POST_RETURN_FINAL_EMITTED=0$' public-evaluator.log
+          grep -q '^SANITIZED_PUBLIC_POST_RETURN_GATE=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_BLOB_COUNT=5$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_RUNTIME_PASS=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_SOURCE_FAILURE_PROVEN=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_CORE_INCLUDED=0$' public-evaluator.log
+          grep -q '^PUBLIC_PRIVATE_RECEIPT_BRIDGE=PASS$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_CASES=23$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_PASS=23$' public-evaluator.log
+          grep -q '^PUBLIC_TOTAL_FAIL=0$' public-evaluator.log
+          grep -q '^SANITIZED_PUBLIC_EVALUATOR_VERIFY=PASS$' public-evaluator.log
+
+      - name: Upload public evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: wukong-sanitized-public-evaluator-${{ github.run_id }}
+          path: public-evaluator.log
+          retention-days: 30

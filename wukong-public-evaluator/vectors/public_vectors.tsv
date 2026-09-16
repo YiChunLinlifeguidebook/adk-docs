@@ -1,0 +1,11 @@
+id	route	provider_calls	external_calls	proposal	evidence	proposal_digest_ok	evidence_digest_ok	identity_ok	lineage_ok	final_authority	direct_final	expected
+native_ok	NATIVE	0	0	0	0	0	0	0	0	0	0	NATIVE_OK
+llm_ok	LLM	1	0	1	1	1	1	1	1	0	0	PROPOSAL_ONLY
+external_ok	EXTERNAL_TOOL	0	1	0	0	0	0	0	0	0	0	EXTERNAL_DISPATCH
+hold_ok	HOLD	0	0	0	0	0	0	0	0	0	0	HOLD
+missing_evidence	LLM	1	0	1	0	1	0	1	1	0	0	REJECT
+tamper	LLM	1	0	1	1	0	1	1	1	0	0	REJECT
+identity_mismatch	LLM	1	0	1	1	1	1	0	1	0	0	REJECT
+lineage_mismatch	LLM	1	0	1	1	1	1	1	0	0	0	REJECT
+provider_final	LLM	1	0	1	1	1	1	1	1	1	0	REJECT
+direct_final	LLM	1	0	1	1	1	1	1	1	0	1	REJECT

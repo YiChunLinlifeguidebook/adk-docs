@@ -1,0 +1,11 @@
+id	gate02	evidence	lineage	dinghai	sanqing	provenance_promoted	provider_final	dinghai_final	tr07_final	bypass_final	post_entered	post_final	release_final	expected
+valid_external_return	1	1	1	1	1	0	0	0	0	0	1	0	0	PROVENANCE_HOLD
+missing_evidence	1	0	1	1	1	0	0	0	0	0	1	0	0	REJECT
+lineage_mismatch	1	1	0	1	1	0	0	0	0	0	1	0	0	REJECT
+provider_final	1	1	1	1	1	0	1	0	0	0	1	0	0	REJECT
+dinghai_final	1	1	1	1	1	0	0	1	0	0	1	0	0	REJECT
+tr07_final	1	1	1	1	1	0	0	0	1	0	1	0	0	REJECT
+bypass_final	1	1	1	1	1	0	0	0	0	1	1	0	0	REJECT
+unauthorized_promotion	1	1	1	1	1	1	0	0	0	0	1	0	0	REJECT
+unbound_post_final	1	1	1	1	1	0	0	0	0	0	1	1	0	REJECT
+release_final	1	1	1	1	1	0	0	0	0	0	1	0	1	REJECT
